@@ -98,10 +98,10 @@ class Ultimate1(pygame.sprite.Sprite):
                 for i in range(10):
                     self.rect = self.rect.move(10, 0)
                     all_sprites.draw(screen)
-                    pygame.draw.rect(screen, pygame.color.Color('green'), (0, 0, pl1.life, 30))
-                    pygame.draw.rect(screen, pygame.color.Color('red'), (pl1.life, 0, 200 - pl1.life, 30))
-                    pygame.draw.rect(screen, pygame.color.Color('green'), (750, 0, pl2.life, 30))
-                    pygame.draw.rect(screen, pygame.color.Color('red'), (750 + pl2.life, 0, 200 - pl2.life, 30))
+                    pygame.draw.rect(screen, pygame.color.Color('green'), (0, 0, round(pl1.life), 30))
+                    pygame.draw.rect(screen, pygame.color.Color('red'), (round(pl1.life), 0, 200 - round(pl1.life), 30))
+                    pygame.draw.rect(screen, pygame.color.Color('green'), (750, 0, round(pl2.life), 30))
+                    pygame.draw.rect(screen, pygame.color.Color('red'), (750 + round(pl2.life), 0, 200 - round(pl2.life), 30))
                     if pl1.c >= 3:
                         pygame.draw.rect(screen, pygame.color.Color('yellow'), (200, 0, 30, 30))
                     else:
@@ -130,6 +130,7 @@ class Ultimate1(pygame.sprite.Sprite):
                     self.rect = self.rect.move(10000, 0)
             else:
                 self.kill()
+        pl2.life = round(pl2.life)
 
 
 class Ultimate2(pygame.sprite.Sprite):
@@ -158,10 +159,10 @@ class Ultimate2(pygame.sprite.Sprite):
                 for i in range(10):
                     self.rect = self.rect.move(-10, 0)
                     all_sprites.draw(screen)
-                    pygame.draw.rect(screen, pygame.color.Color('green'), (0, 0, pl1.life, 30))
-                    pygame.draw.rect(screen, pygame.color.Color('red'), (pl1.life, 0, 200 - pl1.life, 30))
-                    pygame.draw.rect(screen, pygame.color.Color('green'), (750, 0, pl2.life, 30))
-                    pygame.draw.rect(screen, pygame.color.Color('red'), (750 + pl2.life, 0, 200 - pl2.life, 30))
+                    pygame.draw.rect(screen, pygame.color.Color('green'), (0, 0, round(pl1.life), 30))
+                    pygame.draw.rect(screen, pygame.color.Color('red'), (round(pl1.life), 0, 200 - round(pl1.life), 30))
+                    pygame.draw.rect(screen, pygame.color.Color('green'), (750, 0, round(pl2.life), 30))
+                    pygame.draw.rect(screen, pygame.color.Color('red'), (750 + round(pl2.life), 0, 200 - round(pl2.life), 30))
                     if pl1.c >= 3:
                         pygame.draw.rect(screen, pygame.color.Color('yellow'), (200, 0, 30, 30))
                     else:
@@ -183,11 +184,12 @@ class Ultimate2(pygame.sprite.Sprite):
                     time.sleep(0.05)
                 if pygame.sprite.spritecollideany(self, Play1) is not None:
                     if pygame.sprite.spritecollideany(self, Play1) == pl1:
-                        pl1.life = pl1.life - (40 * pl1.is_block)
+                        pl1.life = round(pl1.life - (40 * pl1.is_block))
                     self.kill()
                     self.rect = self.rect.move(-10000, 0)
             else:
                 self.kill()
+        pl1.life = round(pl1.life)
 
 
 class Bullet1(pygame.sprite.Sprite):
@@ -206,7 +208,7 @@ class Bullet1(pygame.sprite.Sprite):
     def update(self):
         if pygame.sprite.spritecollideany(self, Play2) is not None:
             if pygame.sprite.spritecollideany(self, Play2) == pl2:
-                pl2.life = pl2.life - (20 * pl2.is_block)
+                pl2.life = round(pl2.life - (20 * pl2.is_block))
             else:
                 pygame.sprite.spritecollideany(self, Play2).kill()
             self.kill()
@@ -216,7 +218,7 @@ class Bullet1(pygame.sprite.Sprite):
                 for i in range(10):
                     self.rect = self.rect.move(30, 0)
                     all_sprites.draw(screen)
-                    pygame.draw.rect(screen, pygame.color.Color('green'), (0, 0, pl1.life, 30))
+                    pygame.draw.rect(screen, pygame.color.Color('green'), (0, 0, round(pl1.life), 30))
                     pygame.draw.rect(screen, pygame.color.Color('red'), (pl1.life, 0, 200 - pl1.life, 30))
                     pygame.draw.rect(screen, pygame.color.Color('green'), (750, 0, pl2.life, 30))
                     pygame.draw.rect(screen, pygame.color.Color('red'), (750 + pl2.life, 0, 200 - pl2.life, 30))
@@ -231,7 +233,7 @@ class Bullet1(pygame.sprite.Sprite):
                     pygame.display.flip()
                     if pygame.sprite.spritecollideany(self, Play2) is not None:
                         if pygame.sprite.spritecollideany(self, Play2) == pl2:
-                            pl2.life = pl2.life - (10 * pl2.is_block)
+                            pl2.life = round(pl2.life - (10 * pl2.is_block))
                             self.rect = self.rect.move(10000, 0)
                             break
                         else:
@@ -241,13 +243,14 @@ class Bullet1(pygame.sprite.Sprite):
                     time.sleep(0.05)
                 if pygame.sprite.spritecollideany(self, Play2) is not None:
                     if pygame.sprite.spritecollideany(self, Play2) == pl2:
-                        pl2.life = pl2.life - (10 * pl2.is_block)
+                        pl2.life = round(pl2.life - (10 * pl2.is_block))
                     else:
                         pygame.sprite.spritecollideany(self, Play2).kill()
                     self.kill()
                     self.rect = self.rect.move(-10000, 0)
             else:
                 self.kill()
+        pl2.life = round(pl2.life)
 
 
 class Bullet2(pygame.sprite.Sprite):
@@ -306,6 +309,7 @@ class Bullet2(pygame.sprite.Sprite):
                     self.rect = self.rect.move(-10000, 0)
             else:
                 self.kill()
+        pl1.life = round(pl1.life)
 
 
 class Ult_stallion(pygame.sprite.Sprite):
@@ -630,6 +634,7 @@ class Player1(pygame.sprite.Sprite):
                 time.sleep(2)
             print('Победа 2 игрока!!!')
             sys.exit(0)
+        pl2.life = round(pl2.life)
 
 
 class Player2(pygame.sprite.Sprite):
@@ -781,6 +786,7 @@ class Player2(pygame.sprite.Sprite):
             time.sleep(2)
             print('Победа 1 игрока!!!')
             sys.exit(0)
+        pl1.life = round(pl1.life)
 
 
 all_sprites.draw(screen)
